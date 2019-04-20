@@ -1,15 +1,18 @@
+import { Color } from 'csstype';
 import React, { FC } from 'react';
-import { withState } from 'recompose';
+import { compose, withState } from 'recompose';
 import './App.css';
+import withColor from './withColor';
 
 export interface AppProps {
   name: string;
   setName: (name: string) => string;
+  color: Color;
 }
 
-const App: FC<AppProps> = ({ name, setName }) => {
+const App: FC<AppProps> = ({ name, setName, color }) => {
   return (
-    <form className="App">
+    <form className="App" style={{ color }}>
       <label>
         Name:{' '}
         <input
@@ -22,4 +25,7 @@ const App: FC<AppProps> = ({ name, setName }) => {
   );
 };
 
-export default withState('name', 'setName', 'Jake')(App);
+export default compose<AppProps, {}>(
+  withState('name', 'setName', 'Jake'),
+  withColor('blue'),
+)(App);
