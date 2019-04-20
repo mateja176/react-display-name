@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { FC } from 'react';
+import { withState } from 'recompose';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+export interface AppProps {
+  name: string;
+  setName: (name: string) => string;
 }
 
-export default App;
+const App: FC<AppProps> = ({ name, setName }) => {
+  return (
+    <form className="App">
+      <label>
+        Name:{' '}
+        <input
+          type="text"
+          value={name}
+          onChange={({ target: { value } }) => setName(value)}
+        />
+      </label>
+    </form>
+  );
+};
+
+export default withState('name', 'setName', 'Jake')(App);
