@@ -29,6 +29,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/recompose": "^0.30.6"
+    "@types/recompose": "^0.30.6",
+    "csstype": "^2.6.4",
+    "utility-types": "^3.5.0"
   }
 }
